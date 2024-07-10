@@ -1,13 +1,13 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from database import cursor, conn
 from controller.ranking_filtering import ranking_filtering
 from controller.item_base_filtering import item_base_filtering
 from controller.content_base_filtering import content_base_filtering
 
 
-
 app = Flask(__name__)
-
+CORS(app)
 
 
 @app.route('/', methods=['GET'])
