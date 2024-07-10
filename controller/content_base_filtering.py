@@ -6,10 +6,6 @@ def content_base_filtering(product_id, dataProduct, num_recommendations):
     # Memuat data dari file CSV
     products_df = pd.DataFrame(dataProduct)
 
-    # Menampilkan data untuk verifikasi
-    print("Data Produk:")
-    print(products_df.head())
-
     # Menggabungkan tag menjadi satu string per baris
     products_df['tags'] = products_df['tags'].str.replace(',', ' ')
 
@@ -19,15 +15,8 @@ def content_base_filtering(product_id, dataProduct, num_recommendations):
     # Mengubah teks tag menjadi matriks TF-IDF
     tfidf_matrix = tfidf_vectorizer.fit_transform(products_df['tags'])
 
-    # Menampilkan ukuran matriks TF-IDF untuk verifikasi
-    print("\nUkuran Matriks TF-IDF:", tfidf_matrix.shape)
-
     # Menghitung kesamaan cosine antara semua produk
     cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
-
-    # Menampilkan matriks kesamaan untuk verifikasi
-    print("\nMatriks Kesamaan Cosine:")
-    print(cosine_sim)
 
     # Fungsi untuk mendapatkan rekomendasi produk berdasarkan produk yang diberikan
     def get_recommendations(product_id, cosine_sim=cosine_sim):
