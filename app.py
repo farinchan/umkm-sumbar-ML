@@ -62,7 +62,10 @@ def ranking_filtering_recomender():
         cursor.execute("SELECT products.*, ROUND(COALESCE(AVG(product_reviews.rating), 0), 1) as rating FROM products LEFT JOIN product_reviews ON products.id = product_reviews.product_id GROUP BY products.id")
         dataProduct = cursor.fetchall()
         
-        productRecommend = ranking_filtering(dataReview=dataReview, dataProduct=dataProduct, num_recommendations=8)
+        num_recommendations = request.args.get('num_recommendations')
+        num_recommendations = int(num_recommendations) if num_recommendations else 8
+        
+        productRecommend = ranking_filtering(dataReview=dataReview, dataProduct=dataProduct, num_recommendations=num_recommendations)
         
         return jsonify({
             "status": "success",
@@ -75,7 +78,7 @@ def ranking_filtering_recomender():
 @app.route('/recomender/content', methods=['GET'])
 def content_based_recomender():
     try:
-        cursor.execute("SELECT products.*, ROUND(COALESCE(AVG(product_reviews.rating), 0), 1) as rating FROM products LEFT JOIN product_reviews ON products.id = product_reviews.product_id GROUP BY products.id")
+        cursor.execute("SELECT products.*, ROUND(COALESCE(AVG(product_reviews.rating), 0), 1) as rating, COUNT(product_reviews.rating) as rating_count FROM products LEFT JOIN product_reviews ON products.id = product_reviews.product_id GROUP BY products.id")
         dataProduct = cursor.fetchall()
         
         product_id = request.args.get('product_id')

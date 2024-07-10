@@ -40,7 +40,7 @@ def content_base_filtering(product_id, dataProduct, num_recommendations):
     recommendations = get_recommendations(product_id)
     productRecommend = []
     for item in recommendations:
-        product = {'product_id': item, 'product': list(filter(lambda x: x['id'] == item, dataProduct))}
-        productRecommend.append(product)
+        # product = {'product_id': item, 'product': list(filter(lambda x: x['id'] == item, dataProduct))[0]}
+        productRecommend.append(item)
     
     return productRecommend

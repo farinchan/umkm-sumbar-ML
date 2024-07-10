@@ -30,7 +30,7 @@ def item_base_filtering(dataReview, dataProduct , user_id, num_recommendations):
     recommendations = get_item_recommendations(user_id, utility_matrix, item_similarity_df)
     productRecommend = []
     for item, score in recommendations:
-        product = {'product_id': item, 'score': score, 'product': dataProduct[item-1]}
-        productRecommend.append(product)
+        # product = {'product_id': item, 'score': score, 'product': dataProduct[item-1]}
+        productRecommend.append(item)
     
     return productRecommend

@@ -17,7 +17,7 @@ def ranking_filtering(dataReview, dataProduct, num_recommendations):
     recommendations = get_top_rated_recommendations(ratings_summary).to_dict(orient='records')
     productRecommend = []
     for item in recommendations:
-        product = {'product_id': item['product_id'], 'average_rating': item['average_rating'], 'rating_count': item['rating_count'], 'product': dataProduct[item['product_id']-1]}
-        productRecommend.append(product)
+        # product = {'product_id': item['product_id'], 'average_rating': item['average_rating'], 'rating_count': item['rating_count'], 'product': dataProduct[item['product_id']-1]}
+        productRecommend.append(item['product_id'])
     
     return productRecommend
