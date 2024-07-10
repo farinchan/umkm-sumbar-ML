@@ -16,6 +16,8 @@ Once Python is installed, you can clone this repository and navigate to the proj
 pip install -r requirements.txt
 ```
 
+rename the file `.env.example` to `.env` and fill the `DB_USER`, `DB_PASSWORD`, `DB_HOST`, `DB_NAME` with your database configuration.
+
 ## Usage
 
 To start the application, run the following command in your terminal:
