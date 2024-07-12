@@ -24,6 +24,7 @@ def item_base_recomender():
         # Eksekusi query untuk mengambil semua data dari tabel Review Produk
         cursor.execute("SELECT user_id, product_id, rating  FROM product_reviews")
         dataReview = cursor.fetchall()
+        # print(dataReview)
         
         # Eksekusi query untuk mengambil semua data dari tabel Produk
         cursor.execute("SELECT products.*, ROUND(COALESCE(AVG(product_reviews.rating), 0), 1) as rating FROM products LEFT JOIN product_reviews ON products.id = product_reviews.product_id GROUP BY products.id")
